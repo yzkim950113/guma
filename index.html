@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        margin: 0;
+        padding: 20px;
+      }
+      .image-container {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="image-container">
+      <img id="mainImage" src="/img/bun_mo.png" alt="동적 이미지" />
+    </div>
+
+    <script>
+      const images = [
+        "/img/bun_web.png",
+        "/img/bun_mo.png",
+        "/img/gan_web.png",
+        "/img/gan_mo.png",
+      ];
+
+      function updateImage() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const imageId = parseInt(urlParams.get("id")) || 0;
+        if (imageId >= 0 && imageId < images.length) {
+          document.getElementById("mainImage").src = images[imageId];
+        }
+      }
+
+      updateImage();
+      window.addEventListener("popstate", updateImage);
+    </script>
+  </body>
+</html>
