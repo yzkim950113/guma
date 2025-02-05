@@ -27,32 +27,44 @@ img {
     </div>
 
     <script>
-      const images = [
-   "/guma/img/bun_web.png",
-   "/guma/img/bun_mo.png", 
-   "/guma/img/gan_web.png",
-   "/guma/img/gan_mo.png"
-];
+function isMobile() {
+   return window.innerWidth <= 768;
+}
+
+const imageMapping = {
+   0: {
+       mobile: "/guma/img/bun_mo.png",
+       desktop: "/guma/img/bun_web.png"
+   },
+   1: {
+       mobile: "/guma/img/gan_mo.png",
+       desktop: "/guma/img/gan_web.png"
+   }
+};
 
 const imageSizes = {
-   "/guma/img/bun_web.png": { width: 3936, height: 20727 },
+   "/guma/img/bun_web.png": { width: 1920, height: 21789 },
    "/guma/img/bun_mo.png": { width: 1125, height: 23523 },
-   "/guma/img/gan_web.png": { width: 3936, height: 20727 },
-   "/guma/img/gan_mo.png": { width: 1125, height: 23661 }
+   "/guma/img/gan_web.png": { width: 1920, height: 15275 },
+   "/guma/img/gan_mo.png": { width: 1125, height: 16482 }
 };
 
 function updateImage() {
    const urlParams = new URLSearchParams(window.location.search);
    const imageId = parseInt(urlParams.get("id")) || 0;
-   if (imageId >= 0 && imageId < images.length) {
-       const imgSrc = images[imageId];
+   const deviceType = isMobile() ? 'mobile' : 'desktop';
+   
+   if (imageMapping[imageId]) {
+       const imgSrc = imageMapping[imageId][deviceType];
        const imgSize = imageSizes[imgSrc];
        document.getElementById("mainImage").src = imgSrc;
+       document.querySelector('.image-container').style.minHeight = `${imgSize.height}px`;
    }
 }
 
-      updateImage();
-      window.addEventListener("popstate", updateImage);
+updateImage();
+window.addEventListener("popstate", updateImage);
+window.addEventListener("resize", updateImage);
     </script>
   </body>
 </html>
