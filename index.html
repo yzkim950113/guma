@@ -58,7 +58,6 @@ function updateImage() {
        const imgSrc = imageMapping[imageId][deviceType];
        const imgSize = imageSizes[imgSrc];
        document.getElementById("mainImage").src = imgSrc;
-       document.querySelector('.image-container').style.minHeight = `${imgSize.height}px`;
    }
 }
 
