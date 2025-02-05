@@ -28,18 +28,29 @@ img {
 
     <script>
       const images = [
-    "/guma/img/bun_web.png",
-    "/guma/img/bun_mo.png", 
-    "/guma/img/gan_web.png",
-    "/guma/img/gan_mo.png"
+   "/guma/img/bun_web.png",
+   "/guma/img/bun_mo.png", 
+   "/guma/img/gan_web.png",
+   "/guma/img/gan_mo.png"
 ];
-      function updateImage() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const imageId = parseInt(urlParams.get("id")) || 0;
-        if (imageId >= 0 && imageId < images.length) {
-          document.getElementById("mainImage").src = images[imageId];
-        }
-      }
+
+const imageSizes = {
+   "/guma/img/bun_web.png": { width: 3936, height: 20727 },
+   "/guma/img/bun_mo.png": { width: 1125, height: 23523 },
+   "/guma/img/gan_web.png": { width: 3936, height: 20727 },
+   "/guma/img/gan_mo.png": { width: 1125, height: 23661 }
+};
+
+function updateImage() {
+   const urlParams = new URLSearchParams(window.location.search);
+   const imageId = parseInt(urlParams.get("id")) || 0;
+   if (imageId >= 0 && imageId < images.length) {
+       const imgSrc = images[imageId];
+       const imgSize = imageSizes[imgSrc];
+       document.getElementById("mainImage").src = imgSrc;
+       document.querySelector('.image-container').style.minHeight = `${imgSize.height}px`;
+   }
+}
 
       updateImage();
       window.addEventListener("popstate", updateImage);
