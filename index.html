@@ -27,12 +27,11 @@
 
     <script>
       const images = [
-        "/img/bun_web.png",
-        "/img/bun_mo.png",
-        "/img/gan_web.png",
-        "/img/gan_mo.png",
-      ];
-
+    "/guma/img/bun_web.png",
+    "/guma/img/bun_mo.png", 
+    "/guma/img/gan_web.png",
+    "/guma/img/gan_mo.png"
+];
       function updateImage() {
         const urlParams = new URLSearchParams(window.location.search);
         const imageId = parseInt(urlParams.get("id")) || 0;
