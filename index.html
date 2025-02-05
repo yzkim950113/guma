@@ -8,7 +8,7 @@
       }
       .image-container {
     width: 100%;
-    min-height: 23523px;  /* 이미지 실제 높이 */
+    min-height: 100%;  /* 이미지 실제 높이 */
     display: flex;
     justify-content: center;
     align-items: start;
@@ -48,7 +48,6 @@ function updateImage() {
        const imgSrc = images[imageId];
        const imgSize = imageSizes[imgSrc];
        document.getElementById("mainImage").src = imgSrc;
-       document.querySelector('.image-container').style.minHeight = `${imgSize.height}px`;
    }
 }
 
